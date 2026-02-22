@@ -5368,18 +5368,16 @@ button:focus {
     }
 }
 
-/* --- Founder Photo Animation --- */
 .slider-frame {
     position: relative;
     display: inline-block;
-    padding: 6px;
-    /* Increased border width a bit */
     border-radius: 24px;
     /* Slightly larger outer radius */
     overflow: hidden;
     z-index: 1;
     width: 100%;
     max-width: 100%;
+    /* Removing the padding: 6px; here to fix the white line bug */
 }
 
 .slider-frame::before {
