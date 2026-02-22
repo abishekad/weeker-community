@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - WCDT</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/jpeg" href="wcdt logo 1.jpg">
+    <style>
+        /* Gallery specific styles */
+        body {
+            background: url('abstract-luxury-gold-yellow-gradient-studio-wall-well-use-as-background-layout-banner-product-presentation.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .gallery-section {
+            margin-bottom: 4rem;
+        }
+
+        .gallery-topic {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: none !important;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3) !important;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 1rem 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .gallery-item img {
+                height: 200px;
+            }
+        }
+
+        /* Pill Banner Style */
+        .pill-banner {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .pill-banner.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pill-banner.yellow {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="brand-name">
+                <img src="wcdt logo 1.jpg" alt="WCDT Logo" class="brand-logo">
+                <div class="brand-text">
+                    <div class="brand-acronym">WCDT</div>
+                    <div class="brand-full-name">Weaker Community Development Trust</div>
+                </div>
+            </div>
+            <div class="top-contact">
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <div>
+                        <div style="font-size: 0.7rem; opacity: 0.8;">Call Us</div>
+                        <div style="font-weight: bold;">+91 99427 76990</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div>
+                        <div style="font-size: 0.7rem; opacity: 0.8;">Mail Us</div>
+                        <div style="font-weight: bold;">susaimani.sagayam@gmail.com</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <div>
+                        <div style="font-size: 0.7rem; opacity: 0.8;">Location</div>
+                        <div style="font-weight: bold;">Villupuram, India</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Our Projects</a></li>
+                <li><a href="founder.html">Founder</a></li>
+                <li><a href="volunteers.html">Volunteers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="donate.html">Donation</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="javascript:history.back()" class="social-btn" title="Go Back">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <a href="gallery.html" class="social-btn active"><i class="fas fa-images"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="section" style="text-align: center;">
+        <div class="pill-banner yellow" style="font-size: 2rem; margin-bottom: 1rem;">
+            Our Gallery
+        </div>
+        <p
+            style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); font-weight: 500;">
+            Explore our journey through images - witness the impact of our work in the community
+        </p>
+
+        <!-- Community Events -->
+        <div class="gallery-section">
+            <div class="pill-banner primary"><i class="fas fa-users" style="margin-right: 10px;"></i> Community Events
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="IMG_20251208_0001.jpg" alt="Community Event 1">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="IMG_20251208_0002.jpg" alt="Community Event 2">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="IMG_20251208_0003.jpg" alt="Community Event 3">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="IMG_20251208_0004.jpg" alt="Community Event 4">
+                </div>
+                <!-- New Images -->
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="Screenshot 2026-02-11 213207.png" alt="Community Event 5">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="Screenshot 2026-02-11 213259.png" alt="Community Event 6">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="Screenshot 2026-02-11 213309.png" alt="Community Event 7">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="Screenshot 2026-02-11 213318.png" alt="Community Event 8">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(8)">
+                    <img src="about_imag/Screenshot 2026-01-31 160644.png" alt="Eye Camp">
+                </div>
+            </div>
+        </div>
+
+        <!-- Education & Training -->
+        <div class="gallery-section">
+            <div class="pill-banner primary"><i class="fas fa-graduation-cap" style="margin-right: 10px;"></i> Education
+                & Training</div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(9)">
+                    <img src="IMG_20251208_0005.jpg" alt="Education Program 1">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(10)">
+                    <img src="IMG_20251208_0006.jpg" alt="Education Program 2">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(11)">
+                    <img src="IMG_20251208_0007.jpg" alt="Education Program 3">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(12)">
+                    <img src="IMG_20251208_0008.jpg" alt="Education Program 4">
+                </div>
+                <!-- New Images -->
+                <div class="gallery-item" onclick="openLightbox(13)">
+                    <img src="about_imag/Screenshot 2026-01-31 160654.png" alt="School Rally">
+                </div>
+            </div>
+        </div>
+
+        <!-- Women Empowerment -->
+        <div class="gallery-section">
+            <div class="pill-banner primary"><i class="fas fa-female" style="margin-right: 10px;"></i> Women Empowerment
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(14)">
+                    <img src="IMG_20251208_0009.jpg" alt="Women Empowerment 1">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(15)">
+                    <img src="IMG_20251208_0010.jpg" alt="Women Empowerment 2">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(16)">
+                    <img src="IMG_20251208_0011.jpg" alt="Women Empowerment 3">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(17)">
+                    <img src="IMG_20251208_0012.jpg" alt="Women Empowerment 4">
+                </div>
+                <!-- New Images -->
+                <div class="gallery-item" onclick="openLightbox(18)">
+                    <img src="about_imag/Screenshot 2026-01-31 160634.png" alt="Help Line">
+                </div>
+            </div>
+        </div>
+
+        <!-- Infrastructure & Development -->
+        <div class="gallery-section">
+            <div class="pill-banner primary"><i class="fas fa-building" style="margin-right: 10px;"></i> Infrastructure
+                & Development</div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(19)">
+                    <img src="IMG_20251208_0013.jpg" alt="Infrastructure 1">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(20)">
+                    <img src="IMG_20251208_0014.jpg" alt="Infrastructure 2">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(21)">
+                    <img src="IMG_20251208_0015.jpg" alt="Infrastructure 3">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(22)">
+                    <img src="IMG_20251208_0016.jpg" alt="Infrastructure 4">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(23)">
+                    <img src="IMG_20251208_0017.jpg" alt="Infrastructure 5">
+                </div>
+                <!-- New Images -->
+                <div class="gallery-item" onclick="openLightbox(24)">
+                    <img src="about_imag/Screenshot 2026-01-31 160734.png" alt="Sanitation Support">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1, event)">&#10094;</button>
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <button class="lightbox-nav lightbox-next" onclick="changeImage(1, event)">&#10095;</button>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>About WCDT</h3>
+                <p>We believe in creating opportunities and empowering communities. Through education, livelihood, and
+                    sustainable development.</p>
+                <div style="margin-top: 1rem; color: var(--secondary-color);">
+                    <i class="fab fa-twitter fa-lg" style="margin-right: 1rem;"></i>
+                    <i class="fab fa-facebook fa-lg" style="margin-right: 1rem;"></i>
+                    <i class="fab fa-instagram fa-lg"></i>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul style="line-height: 2;">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="volunteers.html">Join as Volunteer</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--secondary-color); width: 20px;"></i>
+                    Sathyakandanur X Road, Villupuram</p>
+                <p style="margin-top: 0.5rem;"><i class="fas fa-phone"
+                        style="color: var(--secondary-color); width: 20px;"></i> +91 99427 76990</p>
+                <p style="margin-top: 0.5rem;"><i class="fas fa-envelope"
+                        style="color: var(--secondary-color); width: 20px;"></i> susaimani.sagayam@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Weakers Community Development Trust. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const images = [
+            'IMG_20251208_0001.jpg', 'IMG_20251208_0002.jpg', 'IMG_20251208_0003.jpg', 'IMG_20251208_0004.jpg',
+            'Screenshot 2026-02-11 213207.png', 'Screenshot 2026-02-11 213259.png', 'Screenshot 2026-02-11 213309.png', 'Screenshot 2026-02-11 213318.png', 'about_imag/Screenshot 2026-01-31 160644.png',
+            'IMG_20251208_0005.jpg', 'IMG_20251208_0006.jpg', 'IMG_20251208_0007.jpg', 'IMG_20251208_0008.jpg',
+            'about_imag/Screenshot 2026-01-31 160654.png',
+            'IMG_20251208_0009.jpg', 'IMG_20251208_0010.jpg', 'IMG_20251208_0011.jpg', 'IMG_20251208_0012.jpg',
+            'about_imag/Screenshot 2026-01-31 160634.png',
+            'IMG_20251208_0013.jpg', 'IMG_20251208_0014.jpg', 'IMG_20251208_0015.jpg', 'IMG_20251208_0016.jpg', 'IMG_20251208_0017.jpg',
+            'about_imag/Screenshot 2026-01-31 160734.png'
+        ];
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightbox-img').src = images[index];
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event.target.id === 'lightbox' || event.target.className === 'lightbox-close') {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function changeImage(direction, event) {
+            event.stopPropagation();
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            if (currentIndex >= images.length) currentIndex = 0;
+            document.getElementById('lightbox-img').src = images[currentIndex];
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function (e) {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox({ target: { id: 'lightbox' } });
+                if (e.key === 'ArrowLeft') changeImage(-1, { stopPropagation: () => { } });
+                if (e.key === 'ArrowRight') changeImage(1, { stopPropagation: () => { } });
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
